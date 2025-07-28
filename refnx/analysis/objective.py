@@ -415,6 +415,7 @@ class Objective(BaseObjective):
                 model, _ = self.transform(x, model)
 
             y, y_err = self.transform(x, y, y_err)
+            y_err = 1.0
             if self.weighted:
                 return y, y_err, model
             else:
@@ -673,7 +674,8 @@ class Objective(BaseObjective):
 
         # TODO do something sensible if data isn't weighted
         if self.weighted:
-            logl += np.log(2 * np.pi * var_y)
+            #logl += np.log(2 * np.pi * var_y)
+            pass
 
         logl += (y - model) ** 2 / var_y
 

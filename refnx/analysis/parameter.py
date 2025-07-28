@@ -121,9 +121,12 @@ class Parameters(UserList):
     def __str__(self):
         s = list()
         s.append(f"{'':_>80}")
-        s.append(f"Parameters: {self.name!r: ^15}")
+        #s.append(f"Parameters: {self.name!r: ^15}")
 
         for el in self._pprint():
+            skips = ['isld', 'frac']
+            if any([skip in el for skip in skips]):
+                continue
             s.append(el)
 
         return "\n".join(list(flatten(s)))
